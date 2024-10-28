@@ -1,2 +1,130 @@
 ---
 # tasks file for postgres_objects
+# Install required psycopg2 module
+- name: Install psycopg2
+  become: true
+  become_user: "root"
+  ansible.builtin.package:
+    name: "{{ psycopg2_package }}"
+    state: present
+
+# Copy module 
+- name: Copy data
+  when: postgres_copy_objs is defined and postgres_copy_objs | length > 0
+  ansible.builtin.import_tasks: "postgres_.yml"
+
+# Databases
+- name: Create and maintenance databases
+  when: postgres_db is defined and postgres_db | length > 0
+  ansible.builtin.import_tasks: "postgres_.yml"
+
+# 
+- name: 
+  when: 
+  ansible.builtin.import_tasks: "postgres_.yml"
+
+# 
+- name: 
+  when: 
+  ansible.builtin.import_tasks: "postgres_.yml"
+
+# 
+- name: 
+  when: 
+  ansible.builtin.import_tasks: "postgres_.yml"
+
+# 
+- name: 
+  when: 
+  ansible.builtin.import_tasks: "postgres_.yml"
+
+# 
+- name: 
+  when: 
+  ansible.builtin.import_tasks: "postgres_.yml"
+
+# 
+- name: 
+  when: 
+  ansible.builtin.import_tasks: "postgres_.yml"
+
+# 
+- name: 
+  when: 
+  ansible.builtin.import_tasks: "postgres_.yml"
+
+# 
+- name: 
+  when: 
+  ansible.builtin.import_tasks: "postgres_.yml"
+
+# 
+- name: 
+  when: 
+  ansible.builtin.import_tasks: "postgres_.yml"
+
+# 
+- name: 
+  when: 
+  ansible.builtin.import_tasks: "postgres_.yml"
+
+# 
+- name: 
+  when: 
+  ansible.builtin.import_tasks: "postgres_.yml"
+
+# 
+- name: 
+  when: 
+  ansible.builtin.import_tasks: "postgres_.yml"
+
+# 
+- name: 
+  when: 
+  ansible.builtin.import_tasks: "postgres_.yml"
+
+# 
+- name: 
+  when: 
+  ansible.builtin.import_tasks: "postgres_.yml"
+
+# 
+- name: 
+  when: 
+  ansible.builtin.import_tasks: "postgres_.yml"
+
+# 
+- name: 
+  when: 
+  ansible.builtin.import_tasks: "postgres_.yml"
+
+# 
+- name: 
+  when: 
+  ansible.builtin.import_tasks: "postgres_.yml"
+
+# 
+- name: 
+  when: 
+  ansible.builtin.import_tasks: "postgres_.yml"
+
+# 
+- name: 
+  when: 
+  ansible.builtin.import_tasks: "postgres_.yml"
+
+# 
+- name: 
+  when: 
+  ansible.builtin.import_tasks: "postgres_.yml"
+
+# 
+- name: 
+  when: 
+  ansible.builtin.import_tasks: "postgres_.yml"
+
+# 
+- name: 
+  when: 
+  ansible.builtin.import_tasks: "postgres_.yml"
+
