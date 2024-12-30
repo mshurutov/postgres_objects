@@ -4,127 +4,82 @@
 - name: Install psycopg2
   become: true
   become_user: "root"
+  tags: postgres_objects_prepare,psycopg2
   ansible.builtin.package:
     name: "{{ psycopg2_package }}"
     state: present
 
 # Copy module 
 - name: Copy data
-  when: postgres_copy_objs is defined and postgres_copy_objs | length > 0
-  ansible.builtin.import_tasks: "postgres_.yml"
+  when: postgres_copies is defined and postgres_copies | length > 0
+  ansible.builtin.import_tasks: "postgres_copy.yml"
 
 # Databases
 - name: Create and maintenance databases
   when: postgres_db is defined and postgres_db | length > 0
-  ansible.builtin.import_tasks: "postgres_.yml"
+  ansible.builtin.import_tasks: "postgres_db.yml"
 
-# 
-- name: 
-  when: 
-  ansible.builtin.import_tasks: "postgres_.yml"
+# Add or remove PostgreSQL extensions from a database
+- name: Create and maintenance extensions
+  when: postgres_exts is defined and postgres_exts | length > 0
+  ansible.builtin.import_tasks: "postgres_ext.yml"
 
-# 
-- name: 
-  when: 
-  ansible.builtin.import_tasks: "postgres_.yml"
+# Create or drop indexes from a PostgreSQL database
+- name: Create and maintenance indexes
+  when: postgres_idx is defined and postgres_idx | length > 0
+  ansible.builtin.import_tasks: "postgres_idx.yml"
 
-# 
-- name: 
-  when: 
-  ansible.builtin.import_tasks: "postgres_.yml"
+# Add or remove PostgreSQL roles from groups
+- name: Create and maintenance membership
+  when: postgres_membership is defined and postgres_membership | length > 0
+  ansible.builtin.import_tasks: "postgres_membership.yml"
 
-# 
-- name: 
-  when: 
-  ansible.builtin.import_tasks: "postgres_.yml"
+# Change an owner of PostgreSQL database object
+- name: Create and maintenance owners of database objects
+  when: postgres_owner is defined and postgres_owner | length > 0
+  ansible.builtin.import_tasks: "postgres_owner.yml"
 
-# 
-- name: 
-  when: 
-  ansible.builtin.import_tasks: "postgres_.yml"
+# Grant or revoke privileges on PostgreSQL database objects
+- name: Create and maintenance 
+  when: postgres_privs is defined and postgres_privs | length > 0
+  ansible.builtin.import_tasks: "postgres_privs.yml"
 
-# 
-- name: 
-  when: 
-  ansible.builtin.import_tasks: "postgres_.yml"
+# Add, update, or remove PostgreSQL publication
+- name: Create and maintenance publication
+  when: postgres_publication is defined and postgres_publication | length > 0
+  ansible.builtin.import_tasks: "postgres_publication.yml"
 
-# 
-- name: 
-  when: 
-  ansible.builtin.import_tasks: "postgres_.yml"
+# Add or remove PostgreSQL schema
+- name: Create and maintenance schema
+  when: postgres_schema is defined and postgres_schema | length > 0
+  ansible.builtin.import_tasks: "postgres_schema.yml"
 
-# 
-- name: 
-  when: 
-  ansible.builtin.import_tasks: "postgres_.yml"
+# Create, drop, or alter a PostgreSQL sequence
+- name: Create and maintenance sequence
+  when: postgres_sequence is defined and postgres_sequence | length > 0
+  ansible.builtin.import_tasks: "postgres_sequence.yml"
 
-# 
-- name: 
-  when: 
-  ansible.builtin.import_tasks: "postgres_.yml"
+# Add or remove replication slots from a PostgreSQL database
+- name: Create and maintenance replication slots
+  when: postgres_slots is defined and postgres_slots | length > 0
+  ansible.builtin.import_tasks: "postgres_slot.yml"
 
-# 
-- name: 
-  when: 
-  ansible.builtin.import_tasks: "postgres_.yml"
+# Add, update, or remove PostgreSQL subscription
+- name: Create and maintenance subscription
+  when: postgres_subscription is defined and postgres_subscription | length > 0
+  ansible.builtin.import_tasks: "postgres_subscription.yml"
 
-# 
-- name: 
-  when: 
-  ansible.builtin.import_tasks: "postgres_.yml"
+# Add or remove PostgreSQL tablespaces from remote hosts
+- name: Create and maintenance tablespaces
+  when: postgres_tablespaces is defined and postgres_tablespaces | length > 0
+  ansible.builtin.import_tasks: "postgres_tablespace.yml"
 
-# 
-- name: 
-  when: 
-  ansible.builtin.import_tasks: "postgres_.yml"
+# Create, drop, or modify a PostgreSQL table
+- name: Create and maintenance table
+  when: postgres_table is defined and postgres_table | length > 0
+  ansible.builtin.import_tasks: "postgres_table.yml"
 
-# 
-- name: 
-  when: 
-  ansible.builtin.import_tasks: "postgres_.yml"
-
-# 
-- name: 
-  when: 
-  ansible.builtin.import_tasks: "postgres_.yml"
-
-# 
-- name: 
-  when: 
-  ansible.builtin.import_tasks: "postgres_.yml"
-
-# 
-- name: 
-  when: 
-  ansible.builtin.import_tasks: "postgres_.yml"
-
-# 
-- name: 
-  when: 
-  ansible.builtin.import_tasks: "postgres_.yml"
-
-# 
-- name: 
-  when: 
-  ansible.builtin.import_tasks: "postgres_.yml"
-
-# 
-- name: 
-  when: 
-  ansible.builtin.import_tasks: "postgres_.yml"
-
-# 
-- name: 
-  when: 
-  ansible.builtin.import_tasks: "postgres_.yml"
-
-# 
-- name: 
-  when: 
-  ansible.builtin.import_tasks: "postgres_.yml"
-
-# 
-- name: 
-  when: 
-  ansible.builtin.import_tasks: "postgres_.yml"
-
+# Create, alter, or remove a user (role) from a PostgreSQL server instance
+- name: Create and maintenance user
+  when: postgres_user is defined and postgres_user | length > 0
+  ansible.builtin.import_tasks: "postgres_user.yml"

@@ -1,20 +1,33 @@
 ---
-# 
-- name: Maintenance 
+- name: Maintenance indexes
   become: true
   become_user: "{{ postgres_system_user }}"
-  tags: postgres_objects,postgres_
+  tags: postgres_objects,postgres_idx
   community.postgresql.:
     ca_cert: "{{ item.ca_cert | default(omit) }}"
-    comment: "{{ item.comment | default(omit) }}"
+    cascade: "{{ item.cascade | default(omit) }}"
+    columns: "{{ item.columns | default(omit) }}"
+    concurrent: "{{ item.concurrent | default(omit) }}"
+    cond: "{{ item.cond | default(omit) }}"
     connect_params: "{{ item.connect_params | default(omit) }}"
+    db: "{{ item.db | default(omit) }}"
+# Index name must be defined
+    idxname: "{{ item.idxname }}"
+    idxtype: "{{ item.idxtype | default(omit) }}"
     login_host: "{{ item.login_host | default(omit) }}"
     login_password: "{{ item.login_password | default(omit) }}"
     login_unix_socket: "{{ item.login_unix_socket | default(omit) }}"
     login_user: "{{ item.login_user | default(omit) }}"
+    port: "{{ item.port | default(omit) }}"
+    schema: "{{ item.schema | default(omit) }}"
     session_role: "{{ item.session_role | default(omit) }}"
     ssl_cert: "{{ item.ssl_cert | default(omit) }}"
     ssl_key: "{{ item.ssl_key | default(omit) }}"
+    ssl_mode: "{{ item.ssl_mode | default(omit) }}"
     state: "{{ item.state | default('present') }}"
+    storage_params: "{{ item.storage_params | default(omit) }}"
+    table: "{{ item.table | default(omit) }}"
+    tablespace: "{{ item.tablespace | default(omit) }}"
     trust_input: "{{ item.trust_input | default(omit) }}"
-  loop: "{{ postgres_ }}
+    unique: "{{ item.unique | default(omit) }}"
+  loop: "{{ postgres_idx }}

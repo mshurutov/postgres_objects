@@ -1,20 +1,26 @@
 ---
-# 
 - name: Maintenance 
   become: true
   become_user: "{{ postgres_system_user }}"
-  tags: postgres_objects,postgres_
+  tags: postgres_objects,postgres_slots
   community.postgresql.:
     ca_cert: "{{ item.ca_cert | default(omit) }}"
-    comment: "{{ item.comment | default(omit) }}"
     connect_params: "{{ item.connect_params | default(omit) }}"
+    db: "{{ item.db | default(omit) }}"
+    immediately_reserve: "{{ item.immediately_reserve | default(omit) }}"
     login_host: "{{ item.login_host | default(omit) }}"
     login_password: "{{ item.login_password | default(omit) }}"
     login_unix_socket: "{{ item.login_unix_socket | default(omit) }}"
     login_user: "{{ item.login_user | default(omit) }}"
+# Name of the replication slot must be defined
+    name: "{{ item.name }}"
+    output_plugin: "{{ item.output_plugin | default(omit) }}"
+    port: "{{ item.port | default(omit) }}"
     session_role: "{{ item.session_role | default(omit) }}"
+    slot_type: "{{ item.slot_type | default(omit) }}"
     ssl_cert: "{{ item.ssl_cert | default(omit) }}"
     ssl_key: "{{ item.ssl_key | default(omit) }}"
+    ssl_mode: "{{ item.ssl_mode | default(omit) }}"
     state: "{{ item.state | default('present') }}"
     trust_input: "{{ item.trust_input | default(omit) }}"
-  loop: "{{ postgres_ }}
+  loop: "{{ postgres_slots }}
