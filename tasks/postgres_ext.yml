@@ -1,19 +1,18 @@
 ---
-- name: Maintenance 
+- name: Maintenance postgres extension
   become: true
   become_user: "{{ postgres_system_user }}"
   tags: postgres_objects,postgres_ext
-  community.postgresql.:
+  community.postgresql.postgresql_ext:
     ca_cert: "{{ item.ca_cert | default(omit) }}"
     cascade: "{{ item.cascade | default(omit) }}"
     comment: "{{ item.comment | default(omit) }}"
     connect_params: "{{ item.connect_params | default(omit) }}"
-    db: "{{ item. db }}"
+    db: "{{ item.db }}"
     login_host: "{{ item.login_host | default(omit) }}"
     login_password: "{{ item.login_password | default(omit) }}"
     login_unix_socket: "{{ item.login_unix_socket | default(omit) }}"
     login_user: "{{ item.login_user | default(omit) }}"
-    session_role: "{{ item.session_role | default(omit) }}"
     name: "{{ item.name }}"
     port: "{{ item.port | default(omit) }}"
     schema: "{{ item.schema | default(omit) }}"
@@ -23,4 +22,4 @@
     state: "{{ item.state | default('present') }}"
     trust_input: "{{ item.trust_input | default(omit) }}"
     version: "{{ item.version | default(omit) }}"
-  loop: "{{ postgres_exts }}
+  loop: "{{ postgres_exts }}"

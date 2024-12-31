@@ -3,7 +3,7 @@
   become: true
   become_user: "{{ postgres_system_user }}"
   tags: postgres_objects,postgres_privs
-  community.postgresql.:
+  community.postgresql.postgresql_privs:
     ca_cert: "{{ item.ca_cert | default(omit) }}"
     comment: "{{ item.comment | default(omit) }}"
     connect_params: "{{ item.connect_params | default(omit) }}"
@@ -27,4 +27,4 @@
     target_roles: "{{ item.target_roles | default(omit) }}"
     trust_input: "{{ item.trust_input | default(omit) }}"
     type: "{{ item.type | default(omit) }}"
-  loop: "{{ postgres_privs }}
+  loop: "{{ postgres_privs }}"

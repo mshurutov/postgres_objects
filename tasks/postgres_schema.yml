@@ -2,8 +2,8 @@
 - name: Maintenance schema
   become: true
   become_user: "{{ postgres_system_user }}"
-  tags: postgres_objects,postgres_schema
-  community.postgresql.:
+  tags: postgres_objects,postgres_schemas
+  community.postgresql.postgresql_schema:
     ca_cert: "{{ item.ca_cert | default(omit) }}"
     cascade_drop: "{{ item.cascade_drop | default(omit) }}"
     comment: "{{ item.comment | default(omit) }}"
@@ -23,4 +23,4 @@
     ssl_mode: "{{ item.ssl_mode | default(omit) }}"
     state: "{{ item.state | default('present') }}"
     trust_input: "{{ item.trust_input | default(omit) }}"
-  loop: "{{ postgres_schema }}
+  loop: "{{ postgres_schema }}"

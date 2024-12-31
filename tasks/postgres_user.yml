@@ -1,9 +1,9 @@
 ---
-- name: Maintenance 
+- name: Maintenance users
   become: true
   become_user: "{{ postgres_system_user }}"
-  tags: postgres_objects,postgres_user
-  community.postgresql.:
+  tags: postgres_objects,postgres_users
+  community.postgresql.postgresql_user:
     ca_cert: "{{ item.ca_cert | default(omit) }}"
     comment: "{{ item.comment | default(omit) }}"
     configuration: "{{ item.configuration | default(omit) }}"
@@ -31,4 +31,4 @@
     ssl_mode: "{{ item.ssl_mode | default(omit) }}"
     state: "{{ item.state | default('present') }}"
     trust_input: "{{ item.trust_input | default(omit) }}"
-  loop: "{{ postgres_user }}
+  loop: "{{ postgres_user }}"

@@ -10,7 +10,6 @@
     conn_limit: "{{ item.conn_limit | default(omit) }}"
     connect_params: "{{ item.connect_params | default(omit) }}"
     dump_extra_args: "{{ item.dump_extra_args | default(omit) }}"
-    dump_extra_args: "{{ item.dump_extra_args | default(omit) }}"
     encoding: "{{ item.encoding | default('UTF-8') }}"
     force: "{{ item.force | default(omit) }}"
     icu_locale: "{{ item.icu_locale | default(omit) }}"
@@ -34,4 +33,4 @@
     target_opts: "{{ item.target_opts | default(omit) }}"
     template: "{{ item.template | default('template1') }}"
     trust_input: "{{ item.trust_input | default(omit) }}"
-  loop: "{{ postgres_db }}
+  loop: "{{ postgres_db }}"

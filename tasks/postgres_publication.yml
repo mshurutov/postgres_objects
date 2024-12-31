@@ -2,8 +2,8 @@
 - name: Maintenance publication
   become: true
   become_user: "{{ postgres_system_user }}"
-  tags: postgres_objects,postgres_publication
-  community.postgresql.:
+  tags: postgres_objects,postgres_publications
+  community.postgresql.postgresql_publication:
     ca_cert: "{{ item.ca_cert | default(omit) }}"
     cascade: "{{ item.cascade | default(omit) }}"
     columns: "{{ item.columns | default(omit) }}"
@@ -26,4 +26,4 @@
     tables: "{{ item.tables | default(omit) }}"
     tables_in_schema: "{{ item.tables_in_schema | default(omit) }}"
     trust_input: "{{ item.trust_input | default(omit) }}"
-  loop: "{{ postgres_publication }}
+  loop: "{{ postgres_publication }}"

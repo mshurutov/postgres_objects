@@ -9,7 +9,7 @@
     name: "{{ psycopg2_package }}"
     state: present
 
-# Copy module 
+# Copy module
 - name: Copy data
   when: postgres_copies is defined and postgres_copies | length > 0
   ansible.builtin.import_tasks: "postgres_copy.yml"
@@ -40,7 +40,7 @@
   ansible.builtin.import_tasks: "postgres_owner.yml"
 
 # Grant or revoke privileges on PostgreSQL database objects
-- name: Create and maintenance 
+- name: Create and maintenance privileges
   when: postgres_privs is defined and postgres_privs | length > 0
   ansible.builtin.import_tasks: "postgres_privs.yml"
 

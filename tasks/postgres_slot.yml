@@ -1,9 +1,9 @@
 ---
-- name: Maintenance 
+- name: Maintenance replication slots
   become: true
   become_user: "{{ postgres_system_user }}"
   tags: postgres_objects,postgres_slots
-  community.postgresql.:
+  community.postgresql.postgresql_slot:
     ca_cert: "{{ item.ca_cert | default(omit) }}"
     connect_params: "{{ item.connect_params | default(omit) }}"
     db: "{{ item.db | default(omit) }}"
@@ -23,4 +23,4 @@
     ssl_mode: "{{ item.ssl_mode | default(omit) }}"
     state: "{{ item.state | default('present') }}"
     trust_input: "{{ item.trust_input | default(omit) }}"
-  loop: "{{ postgres_slots }}
+  loop: "{{ postgres_slots }}"

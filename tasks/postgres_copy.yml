@@ -1,10 +1,9 @@
 ---
-# 
 - name: Copy data between a file/program and a PostgreSQL table
   become: true
   become_user: "{{ postgres_system_user }}"
   tags: postgres_objects,postgres_copy
-  community.postgresql.:
+  community.postgresql.postgresql_copy:
     ca_cert: "{{ item.ca_cert | default(omit) }}"
     columns: "{{ item.columns | default(omit) }}"
     connect_params: "{{ item.connect_params | default(omit) }}"
@@ -25,4 +24,4 @@
     ssl_key: "{{ item.ssl_key | default(omit) }}"
     ssl_mode: "{{ item.ssl_mode | default(omit) }}"
     trust_input: "{{ item.trust_input | default(omit) }}"
-  loop: "{{ postgres_copies }}
+  loop: "{{ postgres_copies }}"
