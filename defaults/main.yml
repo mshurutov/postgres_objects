@@ -1,2 +1,35 @@
 ---
 # defaults file for postgres_objects
+psycopg2_package: "{{ undef() }}"
+# postgres_users should be defined
+postgres_users: []
+#   - name: admindb
+#     comment: "Database Administrator"
+#     role_attr_flags: "CREATEDB,CREATEROLE"
+#     roles:
+#       list:
+#         - "role01"
+#         - "role02"
+# postgres_dbs should be defined
+postgres_dbs: []
+#   - name: postgres
+#     extensions:
+#       name: "pg_stat_statements"
+#   - name: asudb
+#     owner: asudb
+#     indexes:
+#       columns: email
+#       idxname: users_email_idx
+#       state: "present"
+#       table: users
+#       unique: true
+#     owners:
+#     publications:
+#     schemas:
+#       name: app
+#     sequences:
+#       sequence: tbl01_id_pk_seq
+#     subscription:
+#       - name: sub01
+postgres_tablespaces: []
+postgres_slots: []

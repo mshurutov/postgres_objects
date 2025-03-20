@@ -4,31 +4,32 @@
   become_user: "{{ postgres_system_user }}"
   tags: postgres_objects,postgres_users
   community.postgresql.postgresql_user:
+# Connect and common parameters
     ca_cert: "{{ item.ca_cert | default(omit) }}"
-    comment: "{{ item.comment | default(omit) }}"
-    configuration: "{{ item.configuration | default(omit) }}"
-    conn_limit: "{{ item.conn_limit | default(omit) }}"
     connect_params: "{{ item.connect_params | default(omit) }}"
     db: "{{ item.db | default(omit) }}"
-    encrypted: "{{ item.encrypted | default(omit) }}"
-    expires: "{{ item.expires | default(omit) }}"
-    fail_on_user: "{{ item.fail_on_user | default(omit) }}"
     login_host: "{{ item.login_host | default(omit) }}"
     login_password: "{{ item.login_password | default(omit) }}"
     login_unix_socket: "{{ item.login_unix_socket | default(omit) }}"
     login_user: "{{ item.login_user | default(omit) }}"
-# Name of the user (role) must be defined
-    name: "{{ item.name }}"
-    no_password_changes:
-    password: "{{ item.password | default(omit) }}"
     port: "{{ item.port | default(omit) }}"
-    priv: "{{ item.priv | default(omit) }}"
-    reset_unspecified_configuration:
-    role_attr_flags: "{{ item.role_attr_flags | default(omit) }}"
     session_role: "{{ item.session_role | default(omit) }}"
     ssl_cert: "{{ item.ssl_cert | default(omit) }}"
     ssl_key: "{{ item.ssl_key | default(omit) }}"
     ssl_mode: "{{ item.ssl_mode | default(omit) }}"
+# User define parameters
+    comment: "{{ item.comment | default(omit) }}"
+    configuration: "{{ item.configuration | default(omit) }}"
+    conn_limit: "{{ item.conn_limit | default(omit) }}"
+    encrypted: "{{ item.encrypted | default(omit) }}"
+    expires: "{{ item.expires | default(omit) }}"
+    fail_on_user: "{{ item.fail_on_user | default(omit) }}"
+# Name of the user (role) must be defined
+    name: "{{ item.name }}"
+    no_password_changes: "{{ item.no_password_changes | default(omit) }}"
+    password: "{{ item.password | default(omit) }}"
+    reset_unspecified_configuration: "{{ item.reset_unspecified_configuration | default(omit) }}"
+    role_attr_flags: "{{ item.role_attr_flags | default(omit) }}"
     state: "{{ item.state | default('present') }}"
     trust_input: "{{ item.trust_input | default(omit) }}"
-  loop: "{{ postgres_user }}"
+  loop: "{{ postgres_users }}"
