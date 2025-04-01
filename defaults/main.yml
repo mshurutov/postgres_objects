@@ -6,6 +6,7 @@ postgres_users: []
 #   - name: admindb
 #     comment: "Database Administrator"
 #     role_attr_flags: "CREATEDB,CREATEROLE"
+#     password: "usersupersecretpassword"
 #     roles:
 #       list:
 #         - "role01"

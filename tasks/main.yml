@@ -59,7 +59,6 @@
 
 # Grant or revoke privileges on PostgreSQL database objects
 - name: Create and maintenance privileges
-  when: postgres_privs is defined and postgres_privs | length > 0
   ansible.builtin.import_tasks: "postgres_privs.yml"
 
 # Add, update, or remove PostgreSQL publication
