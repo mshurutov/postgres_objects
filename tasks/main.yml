@@ -7,10 +7,12 @@
   tags: postgres_objects_prepare,psycopg2
   block:
     - name: Install on normal distro
+      when: ansible_pkg_mgr != "apt_rpm"
       ansible.builtin.package:
         name: "{{ psycopg2_package }}"
         state: present
     - name: Install on Alt Linux
+      when: ansible_pkg_mgr == "apt_rpm"
       community.general.apt_rpm:
         name: "{{ psycopg2_package }}"
         state: present_not_latest
